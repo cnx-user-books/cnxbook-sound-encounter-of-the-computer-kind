@@ -1,0 +1,96 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Computing a note of music.</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15586</md:content-id>
+  <md:title>Computing a note of music.</md:title>
+  <md:abstract/>
+  <md:uuid>8ae60b21-e8ce-4f28-819b-b5c3db0630f1</md:uuid>
+</metadata>
+
+<content>
+<para id="intro">Most of us listen to music on our computers. Some of us even compose music using existing software. But we can also program a computer to produce sounds. Some of these sounds will be musical, others will show the range of sounds we can hear as human beings. But why do this? This is the age of the Hubble Space Telescope sending us stunning false colour pictures of galaxies billions of light years away. What is the point of looking at the rings of Saturn through a small telescope? Only the simple pleasure of watching Saturn with our own eyes! Similarly, by programming a computer to produce even simple sounds, we can intimately understand how sound works. This will in turn let us deeply appreciate the music we listen to and maybe even give us the courage to compose our own music!</para>   
+
+<para id="definitions">So let us begin with some definitions. What is sound? Sound is our brain's response to vibration. If there is no vibration, there is no sound. Many objects vibrate. If you tap an object, it will go up and down, up and down, up and down and so on until it runs out of energy. An up and down motion is one cycle of vibration or simply one vibration. The number of times an object vibrates every second is its frequency of vibration. The distance it goes up or down as it vibrates is its amplitude of vibration.</para>
+
+<para id="loudspeaker">When we talk about programming a computer to produce sound, we talk about writing a computer program that will make a loudspeaker produce sound.  In this program, we send a 1 to flex the loudspeaker as far as it can go in one direction (say outwards) and send a -1 to flex the loudspeaker as far as it can go in the other direction (inwards). We can also send a number between -1 and 1 and put the loudspeaker somewhere between those two extreme positions. For example, if we send a 0, the loudspeaker goes back to its rest position.  OK so how often can we set the loudspeaker position? Prepare to be amazed. When playing music from your CD, your CD player program is changing the loudspeaker position 44,100 times a second! Assume we have written a similar program which is sending a 1 followed by a -1 continuously. A 1 followed by a -1 vibrates the loudspeaker once. As we are sending these numbers continuously, the loudspeaker vibrates continuously at a rate of 22,050 vibrations every second.  But we wont hear a thing because we can only hear up to 20,000 vibrations a second.  Let us modify this program to send 22,050 1s followed by 22,050 -1s continuously.  The loudspeaker now vibrates just once every second. Again we wont hear a thing because we start to hear only at 20 vibrations a second.  So what is the point of sending all these numbers?! Well, we now know that by programming a computer we can produce the entire range of sounds we can hear: starting from those with a frequency of just 20 vibrations a second up to those with a frequency of 20,000 vibrations a second and beyond.  There is no musical instrument that can do this.  But I hear you scream "We still haven't heard a thing!!".  Let us fix that by sounding a note of music.</para>
+
+<para id="bookmark">A bookmark of a web page contains its URL address (e.g., http://www.google.com) and an easy to remember name (e.g., Google) for recalling it later. We bookmark a web page because we find it interesting. A musical note is a bookmark too. It points to a sound we find interesting among all possible sounds. Just like the web bookmark this bookmark contains two pieces of information - a letter from A to G padded with a number and its frequency of vibration. For example, the note A440 used to tune all the musical instruments of a concert orchestra has a frequency of 440 vibrations every second. To sound the note A440 we simply vibrate the loudspeaker 440 times every second.  As you know, we can set the loudspeaker position 44,100 times every second.  So we have 44,100 / 440 = about 100 numbers to make one vibration of the note A440.  Now if we send 50 1s followed by 50 -1s, will we hear the note A440?!  Actually, we will hear a note with a frequency of 441 vibrations every second!  Very close to A440 but off-tune by just 1 vibration every second. Big deal you say and you will be right.  Its impossible to produce an exact note on any instrument, even a computer instrument. We can get closer but only as far as the computer's capability will allow. On my computer, the operation 44,100 / 100 says 100.22727272727273 numbers are available to make one vibration of the note A440.  Does this mean if we send 50.113636363636367 1s and 50.113636363636367 -1s we will hear the note A440?  Well, we will get as close as possible to the note A440 on this computer but there is a different problem.  We can send 50 1s or 50 -1s but how can we send 50.113636363636367 of anything?  We cant so we get around this by sending 50 1s or 50 -1s as usual while adding up the 0.113636363636367 deficit for each send.  When that summed up deficit crosses 1.0 we send a 51 1s or 51 -1s once and go back to sending 50 1s or -1s again until next time the deficit crosses 1.0.  Table 1 below will make this clear.</para>
+
+
+
+<table id="element-746" summary="a table">
+<tgroup cols="4"><tbody>
+  <row>
+    <entry>Vibration Number</entry>
+    <entry>Number sent</entry>
+    <entry>Amount sent</entry>
+    <entry>Deficit</entry>
+  </row>
+  <row>
+    <entry>1</entry>
+    <entry>1</entry>
+    <entry>50</entry>
+<entry>0.113636363636367</entry>
+
+  </row>
+  <row>
+    <entry>1</entry>
+    <entry>-1</entry>
+    <entry>50</entry>
+<entry>0.22727272727273401</entry>
+  </row>
+<row>
+<entry>2</entry>
+<entry>1</entry>
+<entry>50</entry>
+<entry>0.34090909090910104</entry>
+</row>
+<row>
+<entry>2</entry>
+<entry>-1</entry>
+<entry>50</entry>
+<entry>0.454545454545468</entry>
+</row>
+<row>
+<entry>3</entry>
+<entry>1</entry>
+<entry>50</entry>
+<entry>0.568181818181835</entry>
+</row>
+<row>
+<entry>3</entry>
+<entry>-1</entry>
+<entry>50</entry>
+<entry>0.6818181818182021</entry>
+</row>
+<row>
+<entry>4</entry>
+<entry>1</entry>
+<entry>50</entry>
+<entry>0.7954545454545691</entry>
+</row>
+<row>
+<entry>4</entry>
+<entry>-1</entry>
+<entry>50</entry>
+<entry>0.909090909090936</entry>
+</row>
+<row>
+<entry>5</entry>
+<entry>1</entry>
+<entry>51</entry>
+<entry>0.0227272727273031 = 1.0227272727273031 - 1</entry>
+</row>
+<row>
+<entry>5</entry>
+<entry>-1</entry>
+<entry>50</entry>
+<entry>0.13636363636367013 = 0.0227272727273031 + 0.113636363636367</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table><para id="element-778">To be continued soon.</para>
+</content>
+</document>
